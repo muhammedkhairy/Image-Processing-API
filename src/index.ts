@@ -5,7 +5,7 @@ import router from './routes/index';
 dotenv.config();
 
 const app: Application = express();
-const port: string | number = process.env.PORT || 5500;
+const port: string | number = 5500;
 
 app.use('/', router);
 

@@ -1,14 +1,10 @@
 import express, { Router, Request, Response } from 'express';
+import imageSharpResize from './imageSharpResizing';
 import path from 'path';
-import sharp from 'sharp';
-import { promises as fsPromises } from 'fs';
 
 const imageSharp: Router = express.Router();
 
-const imagePath = path.join(__dirname, '../../../assets/stock');
-const thumbnailsPath = path.join(__dirname, '../../../assets/thumbnails');
-
-imageSharp.get('/', (req: Request, res: Response) => {
+imageSharp.get('/', async (req: Request, res: Response): Promise<void> => {
   const imageName = req.query.imageName as string;
   const imageWidth = req.query.width as string;
   const imageHeight = req.query.height as string;
@@ -16,20 +12,14 @@ imageSharp.get('/', (req: Request, res: Response) => {
   //Image arrays act as database can be expanded for development
   const imagesName: string[] | number[] = ['winnats', 'trees', 'sunseen', 'sandcastle', 'butterfly'];
 
-  //Check if everything is OK!
   if (imagesName.includes(imageName) && parseInt(imageWidth) >= 0 && parseInt(imageHeight) >= 0) {
-    const imageExtension = `${imageName}.jpg`;
+    const requestedImagePath = await imageSharpResize(imageName, parseInt(imageWidth), parseInt(imageHeight));
 
-    (async function () {
-      try {
-        const image = await sharp(`${imagePath}/${imageExtension}`)
-          .resize(parseInt(imageWidth), parseInt(imageHeight))
-          .toFile(`${thumbnailsPath}/${imageName}_${parseInt(imageWidth)}x${parseInt(imageHeight)}.jpg`);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-    res.sendFile(`${thumbnailsPath}/${imageName}_${parseInt(imageWidth)}x${parseInt(imageHeight)}.jpg`);
+    if (requestedImagePath) {
+      res.sendFile(requestedImagePath);
+    } else {
+      res.status(404).send('Image not found');
+    }
   }
 });
 

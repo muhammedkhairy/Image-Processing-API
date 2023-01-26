@@ -31,7 +31,7 @@ In this project we will use typescript, express, sharp, and jasmine for tests, a
 
   > if you wish to display any image provided in main page or in the first method. you have to pass a width and a height parameters in the URL.
 
-  > the URL will be in this structure: http://localhost:{port-number}/images/?imageName={imageName}&width={imageWidth}&height={imageHeight}
+  > the URL will be in this structure: <http://localhost:5500/images/?imageName={winnats&width=1000&height=1000>
 
   > If the requested image stored in project files, it will displayed as it is, but if you request it with unavailable width and height parameters, we will do some work and display the image for you and save a copy of requested image in project folder called thumbnails located in assets folder.
 
@@ -65,13 +65,14 @@ In this project we will use typescript, express, sharp, and jasmine for tests, a
 - Check nodejs version. by running `node -v` through the terminal.
 - Create new empty folder and create the `package.json` file by running the following command `npm init -y`.
 - Add the dependencies required for this project, including Express, TypeScript, Jasmine, Eslint, and Prettier, by running the its commands which can be found through each dependency documentation, for example this how to install type script ...
+
   ```
     npm i -D typescript @nodes/typescript @ ts-node
   ```
 
 ### Configure TypeScript
 
-running `tsc --init ` from terminal will create a new `.tsconfig` file created for you which contain all the needed configuration for you so we will changed it a little bit to match what we need.
+running `tsc --init` from terminal will create a new `.tsconfig` file created for you which contain all the needed configuration for you so we will changed it a little bit to match what we need.
 
 my config is
 
@@ -153,7 +154,7 @@ my config is
 
 > Endpoint testing is not native to Jasmine and requires a third-party framework, like Supertest to test the status of responses from servers
 
-- So we need to install supertest by running `npm i supertest` and Add type definition to allow the code to compile without TypeScript errors `npm i --save-dev @types/supertest. `
+- So we need to install supertest by running `npm i supertest` and Add type definition to allow the code to compile without TypeScript errors `npm i --save-dev @types/supertest.`
 
 ### Installing Sharp
 
