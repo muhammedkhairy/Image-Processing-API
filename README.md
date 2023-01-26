@@ -31,7 +31,7 @@ In this project we will use typescript, express, sharp, and jasmine for tests, a
 
   > if you wish to display any image provided in main page or in the first method. you have to pass a width and a height parameters in the URL.
 
-  > the URL will be in this structure: <http://localhost:5500/images/?imageName={winnats&width=1000&height=1000>
+  > the URL will be in this structure: <http://localhost:5500/images/?imageName=winnats&width=1000&height=1000>
 
   > If the requested image stored in project files, it will displayed as it is, but if you request it with unavailable width and height parameters, we will do some work and display the image for you and save a copy of requested image in project folder called thumbnails located in assets folder.
 

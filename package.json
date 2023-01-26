@@ -4,7 +4,6 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index",
-    "dev": "rimraf dist && copyfiles src/*.html ./dist/ && npx tsc && jasmine && nodemon dist/index",
     "build": "rimraf dist && copyfiles src/*.html ./dist/ && npx tsc && jasmine",
     "nodemon": "nodemon --watch *.ts --exec ts-node ./src/index.ts",
     "eslint": "eslint . --fix",
